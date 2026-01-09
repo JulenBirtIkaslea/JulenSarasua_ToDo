@@ -17,6 +17,11 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 
 // Routing estilo clase
 import { routing, appRoutingProviders } from './app.routing';
+import { Navbar } from './navbar/navbar';
+import { Home } from './home/home';
+import { Tasks } from './tasks/tasks';
+import { TaskDetail } from './task-detail/task-detail';
+import { TaskForm } from './task-form/task-form';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { routing, appRoutingProviders } from './app.routing';
     HomeComponent,
     TaskListComponent,
     TaskDetailComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    Navbar,
+    Home,
+    Tasks,
+    TaskDetail,
+    TaskForm
   ],
   imports: [
     BrowserModule,
