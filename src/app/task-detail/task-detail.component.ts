@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TasksService } from '../services/tasks.service';
@@ -21,7 +21,8 @@ export class TaskDetailComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _tasksService: TasksService
+    private _tasksService: TasksService,
+    private _cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +42,13 @@ export class TaskDetailComponent implements OnInit {
         this.task = data;
         this.loading = false;
         console.log('TASK DETAIL:', this.task);
+        this._cdr.detectChanges();
       },
       error: (error) => {
         this.loading = false;
         this.errorMsg = 'Error al cargar la tarea';
         console.log('ReadById Error', error);
+        this._cdr.detectChanges();
       }
     });
   }

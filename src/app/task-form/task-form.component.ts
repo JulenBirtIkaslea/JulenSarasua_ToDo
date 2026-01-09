@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TasksService } from '../services/tasks.service';
@@ -23,7 +23,8 @@ export class TaskFormComponent implements OnInit {
   constructor(
     private _tasksService: TasksService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _cdr: ChangeDetectorRef
   ) {
     // Modelo inicial (como en clase)
     this.task = new Task('', false);
@@ -52,11 +53,13 @@ export class TaskFormComponent implements OnInit {
         this.task = new Task(data.title, data.completed);
         this.loading = false;
         console.log('EDIT TASK:', data);
+        this._cdr.detectChanges();
       },
       error: (error) => {
         this.loading = false;
         this.errorMsg = 'Error al cargar la tarea para editar';
         console.log('ReadById Error', error);
+        this._cdr.detectChanges();
       }
     });
   }

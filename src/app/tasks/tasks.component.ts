@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TasksService } from '../services/tasks.service';
 
 
@@ -16,7 +16,8 @@ export class TasksComponent implements OnInit {
   public errorMsg: string = '';
 
   constructor(
-    private _tasksService: TasksService
+    private _tasksService: TasksService,
+    private _cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -32,11 +33,13 @@ export class TasksComponent implements OnInit {
         this.tasks = data;
         this.loading = false;
         console.log('TASKS:', this.tasks);
+        this._cdr.detectChanges();
       },
       error: (error) => {
         this.loading = false;
         this.errorMsg = 'Error al cargar las tareas';
         console.log('Read Error', error);
+        this._cdr.detectChanges();
       }
     });
   }

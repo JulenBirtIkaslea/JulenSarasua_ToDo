@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TasksService } from '../services/tasks.service';
 
 
@@ -22,7 +22,8 @@ export class StatsComponent implements OnInit {
   public errorMsg: string = '';
 
   constructor(
-    private _tasksService: TasksService
+    private _tasksService: TasksService,
+    private _cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -55,11 +56,13 @@ export class StatsComponent implements OnInit {
           pending: this.pending,
           percent: this.percentCompleted
         });
+        this._cdr.detectChanges();
       },
       error: (error) => {
         this.loading = false;
         this.errorMsg = 'Error al cargar estadísticas';
         console.log('Stats Error', error);
+        this._cdr.detectChanges();
       }
     });
   }
