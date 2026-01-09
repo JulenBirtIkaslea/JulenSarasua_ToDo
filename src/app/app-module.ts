@@ -1,20 +1,39 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+
+// Páginas / componentes del To-Do
+import { HomeComponent } from './pages/home/home.component';
+import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
+import { TaskDetailComponent } from './pages/tasks/task-detail/task-detail.component';
+import { TaskFormComponent } from './pages/tasks/task-form/task-form.component';
+
+// Navbar (opcional pero recomendado)
+import { NavbarComponent } from './core/navbar/navbar.component';
+
+// Routing estilo clase
+import { routing, appRoutingProviders } from './app.routing';
 
 @NgModule({
   declarations: [
-    App
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    TaskListComponent,
+    TaskDetailComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    routing
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-  ],
-  bootstrap: [App]
+  providers: [appRoutingProviders],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
