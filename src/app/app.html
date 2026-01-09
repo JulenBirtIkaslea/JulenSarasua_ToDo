@@ -1,15 +1,19 @@
-<h1>To-Do CRUD</h1>
+<div class="app-shell">
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <h1>To-Do CRUD</h1>
+        <p>Angular + CRUD + Routing</p>
+      </div>
 
-<nav>
-  <a [routerLink]="['/']">Home</a>
-  &nbsp;
-  <a [routerLink]="['/tasks']">Tareas</a>
-  &nbsp;
-  <a [routerLink]="['/tasks/new']">Nueva tarea</a>
-  &nbsp;
-  <a [routerLink]="['/stats']">Stats</a>
-</nav>
+      <nav class="nav">
+        <a [routerLink]="['/']">Home</a>
+        <a [routerLink]="['/tasks']">Tareas</a>
+        <a [routerLink]="['/tasks/new']">Nueva tarea</a>
+        <a [routerLink]="['/stats']">Stats</a>
+      </nav>
+    </div>
 
-<hr>
-
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+  </div>
+</div>

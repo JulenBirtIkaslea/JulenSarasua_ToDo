@@ -1,0 +1,128 @@
+.tasks-wrap {
+    display: grid;
+    gap: 14px;
+}
+
+.tasks-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tasks-toolbar .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tasks-toolbar .right {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .04);
+}
+
+.table th,
+.table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    font-size: 14px;
+}
+
+.table th {
+    font-size: 12px;
+    letter-spacing: .3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, .05);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.row-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .05);
+    color: var(--muted);
+}
+
+.pill.done {
+    border-color: rgba(34, 197, 94, .35);
+    background: rgba(34, 197, 94, .10);
+    color: rgba(34, 197, 94, .95);
+}
+
+.pill.pending {
+    border-color: rgba(245, 158, 11, .35);
+    background: rgba(245, 158, 11, .10);
+    color: rgba(245, 158, 11, .95);
+}
+
+.status-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 8px 34px 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .05);
+    color: var(--text);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+
+    position: relative;
+    outline: none;
+}
+
+.status-select.pending {
+    border-color: rgba(245, 158, 11, .35);
+    background: rgba(245, 158, 11, .10);
+    color: rgba(245, 158, 11, .95);
+}
+
+.status-select.done {
+    border-color: rgba(34, 197, 94, .35);
+    background: rgba(34, 197, 94, .10);
+    color: rgba(34, 197, 94, .95);
+}
+
+/* Flechita */
+.status-select {
+    background-image:
+        linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, .7) 50%),
+        linear-gradient(135deg, rgba(255, 255, 255, .7) 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) calc(50% - 2px),
+        calc(100% - 12px) calc(50% - 2px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}

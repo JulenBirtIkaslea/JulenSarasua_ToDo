@@ -1,0 +1,16 @@
+.form {
+    display: grid;
+    gap: 14px;
+}
+
+.form h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}

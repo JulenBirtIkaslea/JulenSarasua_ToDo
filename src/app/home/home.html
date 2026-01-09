@@ -1,12 +1,31 @@
-<h2>Home</h2>
+<div class="card">
+  <div class="card-body">
 
-<p>
-  Bienvenido a la aplicación To-Do. Desde aquí puedes ver todas las tareas,
-  crear nuevas y gestionarlas (CRUD).
-</p>
+    <div class="home-hero">
+      <div class="home-hero__text">
+        <h2 style="margin:0;">Home</h2>
+        <p class="small" style="margin:10px 0 0;">
+          Bienvenido a tu To-Do. Desde aquí puedes ver todas las tareas, crear nuevas y gestionarlas (CRUD).
+        </p>
 
-<p>
-  <a [routerLink]="['/tasks']">➡ Ver tareas</a>
-  &nbsp; | &nbsp;
-  <a [routerLink]="['/tasks/new']">➕ Crear tarea</a>
-</p>
+        <div class="home-actions">
+          <a class="btn btn-primary" [routerLink]="['/tasks']">→ Ver tareas</a>
+          <a class="btn" [routerLink]="['/tasks/new']">＋ Crear tarea</a>
+          <a class="btn" [routerLink]="['/stats']">📊 Stats</a>
+        </div>
+      </div>
+
+      <div class="home-hero__hint card">
+        <div class="card-body">
+          <div class="badge">Tip</div>
+          <p class="small" style="margin:10px 0 0;">
+            Crea tareas cortas y claras. Luego marca completadas para ver tu progreso en Stats.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+ 
+</div>

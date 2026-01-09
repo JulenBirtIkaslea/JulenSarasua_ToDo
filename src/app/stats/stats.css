@@ -1,0 +1,37 @@
+.stats {
+    display: grid;
+    gap: 14px;
+}
+
+.stats h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 860px) {
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stat {
+    padding: 16px;
+}
+
+.stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: .3px;
+}
+
+.stat .lbl {
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 13px;
+}

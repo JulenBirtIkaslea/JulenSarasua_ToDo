@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../services/tasks.service';
 
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -53,4 +54,23 @@ export class TasksComponent implements OnInit {
       }
     });
   }
+
+  changeStatus(task: any, completedValue: boolean): void {
+  // Optimista: actualiza UI al momento
+  const previous = task.completed;
+  task.completed = completedValue;
+
+  this._tasksService.Update(task.id, { completed: completedValue }).subscribe({
+    next: () => {
+      // ok
+    },
+    error: (error) => {
+      // rollback si falla
+      task.completed = previous;
+      console.error('Update status error', error);
+      alert('No se pudo actualizar el estado');
+    }
+  });
+}
+
 }

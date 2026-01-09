@@ -1,0 +1,30 @@
+.detail {
+    display: grid;
+    gap: 14px;
+}
+
+.detail h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.kv {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.kv:last-child {
+    border-bottom: none;
+}
+
+.kv .k {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.kv .v {
+    font-size: 14px;
+}

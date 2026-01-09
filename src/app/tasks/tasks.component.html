@@ -1,35 +1,100 @@
-<h2>Listado de tareas</h2>
+<div class="tasks-wrap">
 
-<div *ngIf="loading">
-  <p>Cargando tareas...</p>
-</div>
+  <div class="card">
+    <div class="card-body">
 
-<div *ngIf="!loading && errorMsg != ''">
-  <p>{{ errorMsg }}</p>
-</div>
+      <!-- Header -->
+      <div class="tasks-toolbar">
+        <div class="left">
+          <h2 style="margin:0;">Listado de tareas</h2>
+          <span class="badge" *ngIf="!loading && errorMsg == ''">
+            {{ tasks.length }} tarea(s)
+          </span>
+        </div>
 
-<div *ngIf="!loading && errorMsg == ''">
+        <div class="right">
+          <a class="btn btn-primary" [routerLink]="['/tasks/new']">
+            + Nueva tarea
+          </a>
+        </div>
+      </div>
 
-  <div *ngIf="tasks.length == 0">
-    <p>No hay tareas todavía.</p>
-    <a [routerLink]="['/tasks/new']">Crear la primera</a>
+      <div class="hr"></div>
+
+      <!-- Loading -->
+      <div class="alert" *ngIf="loading">
+        Cargando tareas...
+      </div>
+
+      <!-- Error -->
+      <div class="alert alert-error" *ngIf="!loading && errorMsg != ''">
+        {{ errorMsg }}
+      </div>
+
+      <!-- Empty state -->
+      <div *ngIf="!loading && errorMsg == '' && tasks.length == 0">
+        <p class="small" style="margin-top:0;">No hay tareas todavía.</p>
+        <a class="btn btn-primary" [routerLink]="['/tasks/new']">
+          Crear la primera
+        </a>
+      </div>
+
+      <!-- Table -->
+      <div *ngIf="!loading && errorMsg == '' && tasks.length > 0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Tarea</th>
+              <th>Estado</th>
+              <th style="text-align:right;">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let t of tasks">
+              <!-- Título -->
+              <td>
+                <b>{{ t.title }}</b>
+              </td>
+
+              <!-- Estado editable -->
+              <td>
+                <select
+                  class="status-select"
+                  [ngClass]="t.completed ? 'done' : 'pending'"
+                  [ngModel]="t.completed"
+                  (ngModelChange)="changeStatus(t, $event)"
+                >
+                  <option [ngValue]="false">⏳ Pendiente</option>
+                  <option [ngValue]="true">✅ Completada</option>
+                </select>
+              </td>
+
+              <!-- Acciones -->
+              <td>
+                <div class="row-actions">
+                  <a class="btn" [routerLink]="['/tasks', t.id]">
+                    Ver
+                  </a>
+
+                  <a class="btn" [routerLink]="['/tasks', t.id, 'edit']">
+                    Editar
+                  </a>
+
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteTask(t.id)"
+                  >
+                    Borrar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
-
-  <ul *ngIf="tasks.length > 0">
-    <li *ngFor="let t of tasks">
-      <b>{{ t.title }}</b>
-      -
-      <span *ngIf="t.completed">✅ Completada</span>
-      <span *ngIf="!t.completed">⏳ Pendiente</span>
-
-      &nbsp; | &nbsp;
-
-      <a [routerLink]="['/tasks', t.id]">Ver</a>
-      &nbsp;
-      <a [routerLink]="['/tasks', t.id, 'edit']">Editar</a>
-      &nbsp;
-      <button (click)="deleteTask(t.id)">Borrar</button>
-    </li>
-  </ul>
 
 </div>
