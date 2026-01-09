@@ -1,1 +1,34 @@
-<p>task-detail works!</p>
+<h2>Detalle de tarea</h2>
+
+<div *ngIf="loading">
+  <p>Cargando...</p>
+</div>
+
+<div *ngIf="!loading && errorMsg != ''">
+  <p>{{ errorMsg }}</p>
+  <p>
+    <a [routerLink]="['/tasks']">⬅ Volver a tareas</a>
+  </p>
+</div>
+
+<div *ngIf="!loading && errorMsg == '' && task != null">
+
+  <p><b>ID:</b> {{ task.id }}</p>
+  <p><b>Título:</b> {{ task.title }}</p>
+
+  <p>
+    <b>Estado:</b>
+    <span *ngIf="task.completed">✅ Completada</span>
+    <span *ngIf="!task.completed">⏳ Pendiente</span>
+  </p>
+
+<p>
+  <a [routerLink]="['/tasks']">⬅ Volver</a>
+  &nbsp; | &nbsp;
+  <a [routerLink]="['/tasks', task.id, 'edit']">✏️ Editar</a>
+  &nbsp; | &nbsp;
+  <button (click)="deleteTask()">🗑 Borrar</button>
+</p>
+
+
+</div>

@@ -1,0 +1,35 @@
+<h2>Listado de tareas</h2>
+
+<div *ngIf="loading">
+  <p>Cargando tareas...</p>
+</div>
+
+<div *ngIf="!loading && errorMsg != ''">
+  <p>{{ errorMsg }}</p>
+</div>
+
+<div *ngIf="!loading && errorMsg == ''">
+
+  <div *ngIf="tasks.length == 0">
+    <p>No hay tareas todavía.</p>
+    <a [routerLink]="['/tasks/new']">Crear la primera</a>
+  </div>
+
+  <ul *ngIf="tasks.length > 0">
+    <li *ngFor="let t of tasks">
+      <b>{{ t.title }}</b>
+      -
+      <span *ngIf="t.completed">✅ Completada</span>
+      <span *ngIf="!t.completed">⏳ Pendiente</span>
+
+      &nbsp; | &nbsp;
+
+      <a [routerLink]="['/tasks', t.id]">Ver</a>
+      &nbsp;
+      <a [routerLink]="['/tasks', t.id, 'edit']">Editar</a>
+      &nbsp;
+      <button (click)="deleteTask(t.id)">Borrar</button>
+    </li>
+  </ul>
+
+</div>

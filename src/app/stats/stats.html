@@ -1,0 +1,30 @@
+<p>stats works!</p>
+<h2>Estadísticas</h2>
+
+<div *ngIf="loading">
+  <p>Cargando estadísticas...</p>
+</div>
+
+<div *ngIf="!loading && errorMsg != ''">
+  <p>{{ errorMsg }}</p>
+</div>
+
+<div *ngIf="!loading && errorMsg == ''">
+
+  <p><b>Total tareas:</b> {{ total }}</p>
+  <p><b>Completadas:</b> {{ completed }}</p>
+  <p><b>Pendientes:</b> {{ pending }}</p>
+  <p><b>% completado:</b> {{ percentCompleted }}%</p>
+
+  <div style="border: 1px solid #000; width: 300px; height: 20px;">
+    <div
+      [style.width.%]="percentCompleted"
+      style="height: 20px; background: #4caf50;">
+    </div>
+  </div>
+
+  <br>
+
+  <a [routerLink]="['/tasks']">⬅ Volver a tareas</a>
+
+</div>

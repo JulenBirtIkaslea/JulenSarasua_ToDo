@@ -1,1 +1,57 @@
-<p>task-form works!</p>
+<h2 *ngIf="!editMode">Nueva tarea</h2>
+<h2 *ngIf="editMode">Editar tarea</h2>
+
+<div *ngIf="loading">
+  <p>Cargando...</p>
+</div>
+
+<div *ngIf="!loading && errorMsg != ''">
+  <p>{{ errorMsg }}</p>
+</div>
+
+<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" *ngIf="!loading">
+
+  <!-- TITLE -->
+  <div>
+    <label for="title">Título</label><br>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      [(ngModel)]="task.title"
+      required
+      minlength="3"
+      #title="ngModel"
+    >
+
+    <div *ngIf="title.invalid && title.touched">
+      <small *ngIf="title.errors?.['required']">El título es obligatorio.</small>
+      <small *ngIf="title.errors?.['minlength']">Mínimo 3 caracteres.</small>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- COMPLETED -->
+  <div>
+    <label>
+      <input
+        type="checkbox"
+        name="completed"
+        [(ngModel)]="task.completed"
+      >
+      Completada
+    </label>
+  </div>
+
+  <br>
+
+  <button type="submit" [disabled]="taskForm.invalid">
+    {{ editMode ? 'Actualizar' : 'Crear' }}
+  </button>
+
+  &nbsp;
+
+  <a [routerLink]="['/tasks']">Cancelar</a>
+
+</form>
